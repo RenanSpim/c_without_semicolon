@@ -1,0 +1,12 @@
+# Arquivos de código gerados pelo Flex/Lex
+*.yy.c
+
+# Arquivos executáveis
+# Para Linux/macOS (sem extensão)
+lexico
+
+# Para Windows
+*.exe
+
+# Arquivos objeto (opcional, mas recomendado)
+*.o
