@@ -9,6 +9,7 @@ ID ([A-z]|_)([A-z0-9]|_)+
 STRING \".*\"
 CHAR \'.\'
 OPERATOR \=|\+|-|\*|\/|\^|\=\=
+SPECIAL_C #
 
 %%
 {NUM} {print("INT");}
@@ -17,6 +18,7 @@ OPERATOR \=|\+|-|\*|\/|\^|\=\=
 {CHAR} {print("CHAR");}
 {OPERATOR} {print("MATH_OPERATOR");}
 {ID} {print("VARIABLE");}
+{SPECIAL_C} {print("SPECIAL_CHAR");}
 
 [ \t\n]+ {}
 

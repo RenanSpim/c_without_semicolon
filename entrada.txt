@@ -1,3 +1,5 @@
+#include "stdio.h"
+
 123
 3.14
 "exemplo"a
@@ -5,3 +7,15 @@
 a_variavel_1
 !
 2+2==4
+
+int main() {
+    int var = 2
+
+    if (var >= 2) {
+        printf("Hello World!")
+    } else {
+        printf("Goodbye World!")
+    }
+
+    return 0
+}
