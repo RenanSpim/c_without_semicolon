@@ -8,7 +8,8 @@ NUM [0-9]+
 ID ([A-z]|_)([A-z0-9]|_)+
 STRING \".*\"
 CHAR \'.\'
-OPERATOR \=|\+|-|\*|\/|\^|\=\=
+MATH_OPERATOR \+|-|\*|\/|\^|\=\=
+SPECIAL_OPERATOR \=\=|>|<|\>=|\<=
 SPECIAL_C #
 
 %%
@@ -16,13 +17,14 @@ SPECIAL_C #
 {NUM}\.{NUM} {print("FLOAT");}
 {STRING} {print("STRING");}
 {CHAR} {print("CHAR");}
-{OPERATOR} {print("MATH_OPERATOR");}
+{MATH_OPERATOR} {print("MATH_OPERATOR");}
 {ID} {print("VARIABLE");}
+{SPECIAL_OPERATOR} {print("SPECIAL_OPERATOR");}
 {SPECIAL_C} {print("SPECIAL_CHAR");}
 
 [ \t\n]+ {}
 
-[A-z0-9] {print("ERROR");}
+[A-z0-9_\-;\{\}\[\]\(\)] {print("ERROR");}
 %%
 
 void print(char* token) {
