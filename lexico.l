@@ -5,20 +5,22 @@ void print(char*);
 %}
 
 NUM [0-9]+
-ID [A-z][A-z0-9 _]+
-STRING \".\"
+ID ([A-z]|_)([A-z0-9]|_)+
+STRING \".*\"
 CHAR \'.\'
-OPERATOR \=|\+|-|\*|\/|\^
+OPERATOR \=|\+|-|\*|\/|\^|\=\=
 
 %%
 {NUM} {print("INT");}
 {NUM}\.{NUM} {print("FLOAT");}
 {STRING} {print("STRING");}
 {CHAR} {print("CHAR");}
-{OPERATOR} {print("MATH_OPERATOR")}
+{OPERATOR} {print("MATH_OPERATOR");}
+{ID} {print("VARIABLE");}
 
-[ ]+ {}
-. {print("ERROR");}
+[ \t\n]+ {}
+
+[A-z0-9] {print("ERROR");}
 %%
 
 void print(char* token) {
@@ -26,6 +28,5 @@ void print(char* token) {
 }
 
 int main(void) {
-    printf("Pressione CTRL+C para encerrar\n" );
     yylex();
 }
