@@ -13,4 +13,4 @@ Entregar arquivo flex, txt de teste, manual do usuário (pdf), descrição da li
 
 # Pra rodar (linux):
 - make
-- ./lexico
+- ./lexico < entrada.txt
