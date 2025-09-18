@@ -1,3 +1,3 @@
 all:
-	flex lexico.l
-	gcc lex.yy.c -lfl -o lexico
+	flex main.l
+	gcc lex.yy.c -lfl -o rec
