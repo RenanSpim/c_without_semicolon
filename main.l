@@ -4,31 +4,33 @@
 void print(char*);
 %}
 
-NUM [0-9]+
+NUM -?[0-9]+
 ID ([A-z]|_)([A-z0-9]|_)*
 STRING \".*\"
 CHAR \'.\'
-MATH_OPERATOR \+|-|\*|\/|\^|\=\=
-SPECIAL_OPERATOR \=\=|>|<|\>=|\<=
-SPECIAL_C #|\(|\)|\[|\]|\{|\}
+MATH_OPERATOR \+|-|\*|\/|\^
+SPECIAL_OPERATOR \=\=|>|<|\>=|\<=|\&\&|\|\|
+SPECIAL_C #|\(|\)|\[|\]|\{|\}|\,|\.
+COMMENT \/\*.*\*\/
 
 %%
 {NUM} {print("INT");}
-{NUM}\.{NUM} {print("FLOAT");}
+{NUM}\.[0-9]+ {print("FLOAT");}
 {STRING} {print("STRING");}
 {CHAR} {print("CHAR");}
-{MATH_OPERATOR} {print("MATH_OPERATOR");}
+{COMMENT} {print("COMMENT");}
+{SPECIAL_OPERATOR} {print("SPECIAL_OP'");}
+{MATH_OPERATOR} {print("MATH_OP");}
 {ID} {print("NAME");}
-{SPECIAL_OPERATOR} {print("SPECIAL_OPERATOR");}
-{SPECIAL_C} {print("SPECIAL_CHAR");}
+{SPECIAL_C} {print("SPECIAL_C");}
 
 [ \t\r\n] {}
 
-[A-z0-9_\-;\{\}\[\]\(\)] {printf("Lexical Error: Unexpected character '%s' on line %d\n", yytext, yylineno);}
+[A-z0-9_;\{\}\[\]\(\)\|\&$%@|"|'|!|~|`|?] {printf("Lexical Error: Unexpected character '%s' on line %d\n", yytext, yylineno);}
 %%
 
 void print(char* token) {
-    printf("%s\t=>\t%s\n", token, yytext);
+    printf("(%d) %s\t=>\t%s\n", yylineno, token, yytext);
 }
 
 int main(int argc, char **argv) {

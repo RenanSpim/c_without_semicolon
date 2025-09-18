@@ -3,7 +3,8 @@
 int main() {
     int a = 2
 
-    if (a >= 5) {
+    /* checa se é maior que 5.1 ou menor que -0.2 */
+    if (a >= 5.1 || a <= -0.2) {
         printf("Hello World!\n")
     } else {
         printf("Goodbye World!\n")
