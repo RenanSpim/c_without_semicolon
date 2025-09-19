@@ -9,17 +9,17 @@ ID ([A-z]|_)([A-z0-9]|_)*
 STRING \".*\"
 CHAR \'.\'
 MATH_OPERATOR \+|-|\*|\/|\^
-SPECIAL_OPERATOR \=\=|>|<|\>=|\<=|\&\&|\|\|
+SPECIAL_OPERATOR \=\=|>|<|\>=|\<=|\&\&|\|\||=
 SPECIAL_C #|\(|\)|\[|\]|\{|\}|\,|\.
 COMMENT \/\*.*\*\/
 
 %%
-{NUM} {print("INT");}
+{NUM} {print("INTEGER");}
 {NUM}\.[0-9]+ {print("FLOAT");}
 {STRING} {print("STRING");}
 {CHAR} {print("CHAR");}
 {COMMENT} {print("COMMENT");}
-{SPECIAL_OPERATOR} {print("SPECIAL_OP'");}
+{SPECIAL_OPERATOR} {print("SPECIAL_OP");}
 {MATH_OPERATOR} {print("MATH_OP");}
 {ID} {print("NAME");}
 {SPECIAL_C} {print("SPECIAL_C");}
