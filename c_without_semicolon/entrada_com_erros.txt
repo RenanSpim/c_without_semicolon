@@ -1,0 +1,8 @@
+#include "stdio.h"
+
+
+int main(){
+    float a = 20.0 float b = 40.0
+    
+    return 0
+}
